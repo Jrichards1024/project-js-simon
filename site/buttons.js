@@ -1,15 +1,23 @@
+let input = [];
+
 $('.simon-button.green').on('click', function() {
-  alert('You clicked the green button');
-});
-
-$('.simon-button.blue').on('click', function() {
-  alert('You clicked the blue button');
-});
-
-$('.simon-button.yellow').on('click', function() {
-  alert('You clicked the yellow button');
+  input.push(0);
+  alert(`Input is now ${input}`);
 });
 
 $('.simon-button.red').on('click', function() {
-  alert('You clicked the red button');
+  input.push(1);
+  alert(`Input is now ${input}`);
 });
+
+$('.simon-button.yellow').on('click', function() {
+  input.push(2);
+  alert(`Input is now ${input}`);
+});
+
+$('.simon-button.blue').on('click', function() {
+  input.push(3);
+  alert(`Input is now ${input}`);
+});
+
+module.exports = input;
