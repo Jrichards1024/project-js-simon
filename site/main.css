@@ -1,23 +1,19 @@
 * {
   box-sizing: border-box;
-
 }
 html {
   background-color: #FCFCFC;
   font-family: Arial;
   font-size: 18px;
 }
-
 #content {
   width: 800px;
   margin: 0 auto;
 }
-
 #content h1 {
   font-size: 3rem;
   text-align: center;
 }
-
 .simon-container {
   margin: 20px auto;
   width:400px;
@@ -29,7 +25,6 @@ html {
   grid-column-gap: 20px;
   grid-row-gap: 20px;
 }
-
 .simon-container .simon-button {
   align-items: center;
   background-color: #333;
@@ -40,19 +35,79 @@ html {
   font-size: 40px;
   font-family: sans-serif;
 }
-
 .simon-button.green {
   background-color: #21BA45;
+  transition: background-colora .10s;
+  /* animation-name: background-colorgreen ;
+  animation-delay: .5s;
+  animation-duration: 1s;
+  animation-iteration-count:2; */
 }
-
+@keyframes background-color-green {
+  from {
+    background-color:  rgb(174, 238, 189);
+  }
+  to {
+    background-color: #21BA45;
+  }
+}
+.simon-button.green:hover {
+  background-color:  rgb(174, 238, 189);
+}
 .simon-button.red {
   background-color: #DB2828;
+  transition: background-color .10s;
+  /* animation-name: background-color ;
+  animation-delay: .25s;
+  animation-duration: 1s;
+  animation-iteration-count:2; */
 }
-
+@keyframes background-color-red {
+  from {
+    background-color: rgb(197, 156, 156);
+  }
+  to {
+    background-color: #DB2828
+  }
+}
+.simon-button.red:hover{
+  background-color: rgb(197, 156, 156);
+}
 .simon-button.yellow {
   background-color: #FBBD08;
+  transition: background-color .10s;
+  /* animation-name: background-coloryellow ;
+  animation-delay: .5s;
+  animation-duration: 1s;
+  animation-iteration-count:2; */
 }
-
+@keyframes background-color-yellow {
+  from {
+    background-color:  rgb(224, 208, 158);
+  }
+  to {
+    background-color: #FBBD08;
+  }
+}
+.simon-button.yellow:hover{
+  background-color: rgb(224, 208, 158);
+}
 .simon-button.blue {
   background-color: #2185D0;
+  transition: background-color .10s;
+  /* animation-name: background-colorblue ;
+  animation-delay: .75s;
+  animation-duration: 1s;
+  animation-iteration-count:2; */
+}
+@keyframes background-color-blue {
+from {
+  background-color: rgb(129, 174, 209) ;
+}
+to {
+  background-color: #2185D0;
+}
+}
+.simon-button.blue:hover {
+  background-color:  rgb(129, 174, 209);
 }
