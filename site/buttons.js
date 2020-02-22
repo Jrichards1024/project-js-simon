@@ -1,7 +1,3 @@
-//input is player input
-//arr is computer generated colors
-//arr
-
 let input = [];
 let arr = [];
 let arrSlice = [];
@@ -32,41 +28,35 @@ $('.simon-button.yellow').on('mousedown', function() {
 $('.simon-button.red').on('mousedown', function() {
   makeMove('red', 'redButton.mp3');
 });
-
 function buttonPress() {
 $('.simon-button.green').on('click', function() {
   input.push('green');
-  inputStr = inputStr + 'green';
+  //inputStr = inputStr + 'green';
   console.log(`Input is now ${input}`);
   gameCheck()
 });
-
 $('.simon-button.red').on('click', function() {
   input.push('red');
-  inputStr = inputStr + 'red';
+  //inputStr = inputStr + 'red';
   console.log(`Input is now ${input}`);
   gameCheck()
 });
-
 $('.simon-button.yellow').on('click', function() {
   input.push('yellow');
-  inputStr = inputStr + 'yellow';
+  //inputStr = inputStr + 'yellow';
   console.log(`Input is now ${input}`);
   gameCheck();
 });
-
 $('.simon-button.blue').on('click', function() {
   input.push('blue');
-  inputStr = inputStr + 'blue';
+  //inputStr = inputStr + 'blue';
   console.log(`Input is now ${input}`);
   gameCheck()
 });
 }
-
 function isDone(color) {
   return $(`.simon-button.${color}`).css({opacity: 100})
 }
-
 function process(colors) {
   if (colors.length === 0) {
     return
@@ -81,8 +71,7 @@ function process(colors) {
     process(colors);
   }, 500);
 }
-
-function pattern() {
+function createPattern() {
   let randNum = Math.floor(Math.random() * 4);
   if (randNum === 0) {
     arr.push('green');
@@ -101,60 +90,57 @@ function pattern() {
   input = [];
   inputSlice = [];
   indexCounter = 0;
-  step();
-
+  //step();
   console.log(`The generated array is ${arr}`);
-}
-
-function step() {
-  // if (indexCounter === 0) {
-  //   arrSlice.push(arr[indexCounter]);
-  //   inputSlice.push(input[indexCounter]);
-  //   arrSliceStr = arrSlice.toString('');
-  //   inputSliceStr = inputSlice.toString('');
-  //   indexCounter++;
-  // }
-  // else {
-    // arrSlice = [];
-    // inputSlice = [];
-    arrSlice.push(arr[indexCounter]);
-    inputSlice.push(input[indexCounter]);
-    arrSliceStr = arrSlice.toString('');
-    // inputSliceStr = inputSlice.toString('');
-    indexCounter++;
-  //}
 }
 
 function gameCheck() {
   arrStr = arr.toString('');
   inputStr = input.toString('');
-  arrSliceStr = arrSlice.toString('');
-  inputSliceStr = inputSlice.toString('');
-  if (arrStr === inputStr) {
-    pattern();
+  if (inputStr === arrStr) {
+    createPattern();
     count += 1;
-    process(arr);
-    console.log('arrSlice is ' + arrSlice);
-    console.log('arrSliceStr is ' + arrSliceStr);
-    console.log('inputStr is ' + inputStr);
-    console.log('inputSliceStr is ' + inputSliceStr);
+    indexCounter = 0;
+    return
   }
-  else if (arrSliceStr === inputStr) {
-    step();
-    console.log('arrSlice is ' + arrSlice);
-    console.log('arrSliceStr is ' + arrSliceStr);
-    console.log('inputStr is ' + inputStr);
-    console.log('inputSliceStr is ' + inputSliceStr);
+  else if (arr[indexCounter].toString('') === input[indexCounter].toString('')) {
+    indexCounter++;
   }
   else {
-    alert(`You lost after ${count} turns!`);
-  };
+    alert(`You lost after ${count} turns!`);}
 }
-
+//   console.log("before if")
+//   console.log('inputStr is ' + inputStr);
+//   arrSliceStr = arrSlice.toString('');
+//   inputSliceStr = inputSlice.toString('');
+//   step()
+//   console.log(`inputSliceStr ${inputSliceStr}`)
+//   if (arrStr === inputStr) {
+//     //console.log("----if----")
+//     pattern();
+//     count += 1;
+//     process(arr);
+//     // console.log('arrSlice is ' + arrSlice);
+//     // console.log('arrSliceStr is ' + arrSliceStr);
+//     // console.log('inputStr is ' + inputStr);
+//     // console.log('this is inputSlice', inputSlice)
+//     // console.log('inputSliceStr is ' + inputSliceStr);
+//   }
+//   else if (arrSliceStr === inputStr) {
+//     console.log("else if ")
+//     step();
+//     console.log('arrSlice is ' + arrSlice);
+//     console.log('arrSliceStr is ' + arrSliceStr);
+//     console.log('inputStr is ' + inputStr);
+//     console.log('inputSliceStr is ' + inputSliceStr);
+//   }
+//   else {
+//     alert(`You lost after ${count} turns!`);
+//   };
+// }
 $('.play-button').on('click', function() {
   playAudio();
   })
-
-pattern();
-process(arrSlice);
+createPattern();
+//process(arr);
 buttonPress();
