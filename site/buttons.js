@@ -8,6 +8,7 @@ let inputStr = '';
 let arrSliceStr = '';
 let inputSliceStr = '';
 let indexCounter = 0;
+let arrCopy = [];
 
 function makeMove(color, sound) {
   let selector = $(`.simon-button.${color}`);
@@ -57,7 +58,8 @@ $('.simon-button.blue').on('click', function() {
 function isDone(color) {
   return $(`.simon-button.${color}`).css({opacity: 100})
 }
-function process(colors) {
+function process() {
+  let colors = arrCopy;
   if (colors.length === 0) {
     return
   }
@@ -75,15 +77,19 @@ function createPattern() {
   let randNum = Math.floor(Math.random() * 4);
   if (randNum === 0) {
     arr.push('green');
+    arrCopy.push('green');
   }
   else if (randNum === 1) {
     arr.push('red');
+    arrCopy.push('red');
   }
   else if (randNum === 2) {
     arr.push('yellow');
+    arrCopy.push('yellow');
   }
   else if (randNum === 3) {
     arr.push('blue');
+    arrCopy.push('blue');
   }
   //playAudio()
   arrSlice = [];
@@ -97,14 +103,18 @@ function createPattern() {
 function gameCheck() {
   arrStr = arr.toString('');
   inputStr = input.toString('');
+  console.log(arr);
+  console.log(input);
   if (inputStr === arrStr) {
     createPattern();
     count += 1;
     indexCounter = 0;
+    arrCopy = arr;
     return
   }
   else if (arr[indexCounter].toString('') === input[indexCounter].toString('')) {
     indexCounter++;
+    arrCopy = arr;
   }
   else {
     alert(`You lost after ${count} turns!`);}
@@ -142,5 +152,5 @@ $('.play-button').on('click', function() {
   playAudio();
   })
 createPattern();
-//process(arr);
+process();
 buttonPress();
