@@ -8,6 +8,17 @@ let inputStr = '';
 let arrSliceStr = '';
 let inputSliceStr = '';
 let indexCounter = 0;
+let lightupIndexCounter = 0
+
+function playSound(color) {
+  let selector = $(`.simon-button.${color}`);
+  let audio = new Audio();
+  audio.src = `${color}Button.mp3`;
+  audio.play();
+  $(selector).addClass('flash');
+}
+
+
 
 function makeMove(color, sound) {
   let selector = $(`.simon-button.${color}`);
@@ -31,25 +42,21 @@ $('.simon-button.red').on('mousedown', function() {
 function buttonPress() {
 $('.simon-button.green').on('click', function() {
   input.push('green');
-  //inputStr = inputStr + 'green';
   console.log(`Input is now ${input}`);
   gameCheck()
 });
 $('.simon-button.red').on('click', function() {
   input.push('red');
-  //inputStr = inputStr + 'red';
   console.log(`Input is now ${input}`);
   gameCheck()
 });
 $('.simon-button.yellow').on('click', function() {
   input.push('yellow');
-  //inputStr = inputStr + 'yellow';
   console.log(`Input is now ${input}`);
   gameCheck();
 });
 $('.simon-button.blue').on('click', function() {
   input.push('blue');
-  //inputStr = inputStr + 'blue';
   console.log(`Input is now ${input}`);
   gameCheck()
 });
@@ -58,18 +65,19 @@ function isDone(color) {
   return $(`.simon-button.${color}`).css({opacity: 100})
 }
 function process(colors) {
-  if (colors.length === 0) {
+
+  if (lightupIndexCounter=== colors.length  ) {
     return
   }
-  let nextColor = colors.shift();
+  let nextColor = colors[lightupIndexCounter];
   $(`.simon-button.${nextColor}`).animate({
   opacity: .25,
-  },500, function() {
-  isDone(nextColor)
+  },500,function() {
+  isDone(nextColor),playSound(nextColor)
   });
   setTimeout(() => {
     process(colors);
-  }, 500);
+  }, 500,lightupIndexCounter++);
 }
 function createPattern() {
   let randNum = Math.floor(Math.random() * 4);
@@ -86,17 +94,18 @@ function createPattern() {
     arr.push('blue');
   }
   //playAudio()
-  arrSlice = [];
   input = [];
   inputSlice = [];
   indexCounter = 0;
-  //step();
+  lightupIndexCounter = 0
   console.log(`The generated array is ${arr}`);
+  process(arr)
 }
 
 function gameCheck() {
   arrStr = arr.toString('');
   inputStr = input.toString('');
+  console.log(`this is arr in game check ${arr}`)
   if (inputStr === arrStr) {
     createPattern();
     count += 1;
@@ -109,35 +118,7 @@ function gameCheck() {
   else {
     alert(`You lost after ${count} turns!`);}
 }
-//   console.log("before if")
-//   console.log('inputStr is ' + inputStr);
-//   arrSliceStr = arrSlice.toString('');
-//   inputSliceStr = inputSlice.toString('');
-//   step()
-//   console.log(`inputSliceStr ${inputSliceStr}`)
-//   if (arrStr === inputStr) {
-//     //console.log("----if----")
-//     pattern();
-//     count += 1;
-//     process(arr);
-//     // console.log('arrSlice is ' + arrSlice);
-//     // console.log('arrSliceStr is ' + arrSliceStr);
-//     // console.log('inputStr is ' + inputStr);
-//     // console.log('this is inputSlice', inputSlice)
-//     // console.log('inputSliceStr is ' + inputSliceStr);
-//   }
-//   else if (arrSliceStr === inputStr) {
-//     console.log("else if ")
-//     step();
-//     console.log('arrSlice is ' + arrSlice);
-//     console.log('arrSliceStr is ' + arrSliceStr);
-//     console.log('inputStr is ' + inputStr);
-//     console.log('inputSliceStr is ' + inputSliceStr);
-//   }
-//   else {
-//     alert(`You lost after ${count} turns!`);
-//   };
-// }
+
 $('.play-button').on('click', function() {
   playAudio();
   })
