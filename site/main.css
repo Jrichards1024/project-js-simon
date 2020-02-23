@@ -84,3 +84,8 @@ html {
 .simon-button.blue:active {
   background-color:  rgb(129, 174, 209);
 }
+.play-button {
+  width: 150px;
+  text-align: center;
+  margin:0 auto;
+}

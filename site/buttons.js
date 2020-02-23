@@ -119,9 +119,8 @@ function gameCheck() {
     alert(`You lost after ${count} turns!`);}
 }
 
-$('.play-button').on('click', function() {
-  playAudio();
-  })
-createPattern();
-//process(arr);
-buttonPress();
+  $('.play-button').on('click', function() {
+    createPattern();
+    //process(arr);
+    buttonPress();
+  });
