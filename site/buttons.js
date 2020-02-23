@@ -63,15 +63,15 @@ function process() {
   if (colors.length === 0) {
     return
   }
-  let nextColor = colors.shift();
+  let nextColor = colors.pop();
   $(`.simon-button.${nextColor}`).animate({
   opacity: .25,
-  },500, function() {
+  },700, function() {
   isDone(nextColor)
   });
   setTimeout(() => {
     process(colors);
-  }, 500);
+  }, 5000);
 }
 function createPattern() {
   let randNum = Math.floor(Math.random() * 4);
@@ -103,18 +103,22 @@ function createPattern() {
 function gameCheck() {
   arrStr = arr.toString('');
   inputStr = input.toString('');
-  console.log(arr);
-  console.log(input);
+  console.log('arr is ' + arr);
+  console.log('input is ' + input);
   if (inputStr === arrStr) {
     createPattern();
     count += 1;
     indexCounter = 0;
-    arrCopy = arr;
+    arrCopy.push(arr);
+    process();
     return
   }
   else if (arr[indexCounter].toString('') === input[indexCounter].toString('')) {
     indexCounter++;
-    arrCopy = arr;
+    console.log('arr is ' + arr);
+    console.log('input is ' + input);
+    arrCopy.push(arr);
+    process();
   }
   else {
     alert(`You lost after ${count} turns!`);}
