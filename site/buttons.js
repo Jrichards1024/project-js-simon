@@ -66,7 +66,7 @@ function process(colors) {
   }
   let nextColor = colors[lightupIndexCounter];
   $(`.simon-button.${nextColor}`).animate({
-  opacity: .25,
+  opacity: .5,
   },500,function() {
   isDone(nextColor),playSound(nextColor)
   });

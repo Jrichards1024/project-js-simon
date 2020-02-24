@@ -2,7 +2,7 @@
   box-sizing: border-box;
 }
 html {
-  background-color: #FCFCFC;
+  background-color: white;
   font-family: Fantasy;
   font-size: 18px;
 }
@@ -13,17 +13,31 @@ html {
 #content h1 {
   font-size: 3rem;
   text-align: center;
+  color: rgb(198, 198, 245);
 }
 .simon-container {
   margin: 20px auto;
   width:400px;
   height:400px;
-  background-color:#fff;
+  background-color: rgba(255, 255, 255, 0);
   display:grid;
   grid-template-columns: 200px 200px;
   grid-row: auto auto;
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  animation-name: spin;
+  animation-duration: 7000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spin {
+  from {
+      transform:rotate(0deg);
+  }
+  to {
+      transform:rotate(-360deg);
+  }
 }
 .simon-container .simon-button {
   align-items: center;
@@ -37,7 +51,7 @@ html {
 }
 .simon-button.green {
   background-color: #21BA45;
-  transition: background-colora .10s;
+  border-radius: 5000px 0px 250px 0px ;
 }
 
 .simon-button.green:hover {
@@ -49,7 +63,7 @@ html {
 }
 .simon-button.red {
   background-color: #DB2828;
-  transition: background-color .10s;
+  border-radius: 0px 5000px 0px 250px ;
 }
 
 .simon-button.red:hover{
@@ -62,7 +76,7 @@ html {
 
 .simon-button.yellow {
   background-color: #FBBD08;
-  transition: background-color .10s;
+  border-radius: 0px 250px 0px 5000px;
 }
 
 .simon-button.yellow:hover{
@@ -74,7 +88,7 @@ html {
 }
 .simon-button.blue {
   background-color: #2185D0;
-  transition: background-color .10s;
+  border-radius: 250px 0px 5000px 0px ;
 }
 
 .simon-button.blue:hover {
@@ -88,7 +102,8 @@ h2 {
   text-align: center;
 }
 .play-button {
-  align-items: center;
+  vertical-align: middle;
+  float: center;
   width: 200px;
   height: 125px;
   color:black;
@@ -97,4 +112,39 @@ h2 {
   font-family: fantasy;
   /* text-align: center;
   margin:0 auto; */
+}
+.play-button:hover {
+  transform: scale(1.15);
+}
+
+/* .med-button {
+  vertical-align: middle;
+  float: center;
+  width: 200px;
+  height: 125px;
+  color:black;
+  background-color: rgb(179, 74, 179);
+  font-size: 50px;
+  font-family: fantasy;
+  /* text-align: center;
+  margin:0 auto; */ */
+}
+.med-button:hover {
+  transform: scale(1.15);
+}
+
+.hard-button {
+  vertical-align: middle;
+  float: right;
+  width: 200px;
+  height: 125px;
+  color:black;
+  background-color: rgb(179, 74, 179);
+  font-size: 50px;
+  font-family: fantasy;
+  /* text-align: center;
+  margin:0 auto; */
+}
+.hard-button:hover {
+  transform: scale(1.15);
 }
