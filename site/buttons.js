@@ -1,14 +1,11 @@
 let input = [];
 let arr = [];
-let arrSlice = [];
 let inputSlice = [];
 let count = 0;
-let arrStr = '';
-let inputStr = '';
-let arrSliceStr = '';
-let inputSliceStr = '';
 let indexCounter = 0;
-let lightupIndexCounter = 0
+let lightupIndexCounter = 0;
+let inputStr = '';
+let arrStr = '';
 
 function playSound(color) {
   let selector = $(`.simon-button.${color}`);
@@ -17,8 +14,6 @@ function playSound(color) {
   audio.play();
   $(selector).addClass('flash');
 }
-
-
 
 function makeMove(color, sound) {
   let selector = $(`.simon-button.${color}`);
@@ -42,7 +37,7 @@ $('.simon-button.red').on('mousedown', function() {
 function buttonPress() {
 $('.simon-button.green').on('click', function() {
   input.push('green');
-  console.log(`Input is now ${input}`);
+ console.log(`Input is now ${input}`);
   gameCheck()
 });
 $('.simon-button.red').on('click', function() {
@@ -66,7 +61,7 @@ function isDone(color) {
 }
 function process(colors) {
 
-  if (lightupIndexCounter=== colors.length  ) {
+  if (lightupIndexCounter === colors.length  ) {
     return
   }
   let nextColor = colors[lightupIndexCounter];
@@ -98,14 +93,14 @@ function createPattern() {
   inputSlice = [];
   indexCounter = 0;
   lightupIndexCounter = 0
-  console.log(`The generated array is ${arr}`);
+  //console.log(`The generated array is ${arr}`);
   process(arr)
 }
 
 function gameCheck() {
   arrStr = arr.toString('');
   inputStr = input.toString('');
-  console.log(`this is arr in game check ${arr}`)
+  //console.log(`this is arr in game check ${arr}`)
   if (inputStr === arrStr) {
     createPattern();
     count += 1;
@@ -119,8 +114,30 @@ function gameCheck() {
     alert(`You lost after ${count} turns!`);}
 }
 
-  $('.play-button').on('click', function() {
-    createPattern();
-    //process(arr);
-    buttonPress();
-  });
+function emptyEverything() {
+  arr = [];
+  input = [];
+  inputSlice = [];
+  count = 0;
+  indexCounter = 0;
+  lightupIndexCounter = 0;
+  inputStr = '';
+  arrStr = '';
+  colors = [];
+  nextColor = [];
+}
+
+$('.play-button').on('click', function() {
+  arr = [];
+  input = [];
+  inputSlice = [];
+  count = 0;
+  indexCounter = 0;
+  lightupIndexCounter = 0;
+  inputStr = '';
+  arrStr = '';
+  colors = [];
+  nextColor = [];
+  createPattern();
+  buttonPress();
+});

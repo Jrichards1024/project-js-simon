@@ -3,7 +3,7 @@
 }
 html {
   background-color: #FCFCFC;
-  font-family: Arial;
+  font-family: Fantasy;
   font-size: 18px;
 }
 #content {
@@ -84,8 +84,17 @@ html {
 .simon-button.blue:active {
   background-color:  rgb(129, 174, 209);
 }
-.play-button {
-  width: 150px;
+h2 {
   text-align: center;
-  margin:0 auto;
+}
+.play-button {
+  align-items: center;
+  width: 200px;
+  height: 125px;
+  color:black;
+  background-color: rgb(179, 74, 179);
+  font-size: 50px;
+  font-family: fantasy;
+  /* text-align: center;
+  margin:0 auto; */
 }
